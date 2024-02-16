@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Seller;
+use App\Repositories\Contracts\SellerRepositoryInterface;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class SellerController extends Controller
 {
     public function __construct(
-        protected Seller $sellerModel,
+        protected SellerRepositoryInterface $sellerRepository,
     )
     {
         //
@@ -23,7 +23,7 @@ class SellerController extends Controller
      */
     public function index(): View
     {
-       $sellers = $this->sellerModel->all();
+       $sellers = $this->sellerRepository->getAllSellers();
        return view('sellers.index', compact('sellers'));
     }
 
@@ -47,7 +47,7 @@ class SellerController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $request->all();
-        $this->sellerModel->create($data);
+        $this->sellerRepository->storeSeller($data);
         return redirect()->route('sellers.index');
     }
 
@@ -60,7 +60,7 @@ class SellerController extends Controller
      */
     public function show(string $sellerId): View
     {
-        $seller = $this->sellerModel->findOrFail($sellerId);
+        $seller = $this->sellerRepository->findOneSeller($sellerId);
         return view('sellers.show', compact('seller'));
     }
 
@@ -73,7 +73,7 @@ class SellerController extends Controller
      */
     public function edit(string $sellerId): View
     {
-        $seller = $this->sellerModel->findOrFail($sellerId);
+        $seller = $this->sellerRepository->findOneSeller($sellerId);
         return view('sellers.edit', compact('seller'));
     }
 
@@ -88,8 +88,7 @@ class SellerController extends Controller
     public function update(Request $request, string $sellerId): RedirectResponse
     {
         $data = $request->all();
-        $seller = $this->sellerModel->findOrFail($sellerId);
-        $seller->update($data);
+        $this->sellerRepository->updateSeller($sellerId, $data);
         return redirect()->route('sellers.index');
     }
 
@@ -102,8 +101,7 @@ class SellerController extends Controller
      */
     public function destroy(string $sellerId): RedirectResponse
     {
-        $seller = $this->sellerModel->findOrFail($sellerId);
-        $seller->delete();
+        $this->sellerRepository->deleteSeller($sellerId);
         return redirect()->route('sellers.index');
     }
 }
