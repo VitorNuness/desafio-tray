@@ -7,15 +7,22 @@
     <title>Adicionar Vendedor</title>
 </head>
 <body>
+    @if ($errors->any())
+        <div>
+            @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        </div>
+    @endif
     <form action="{{ route('sellers.store') }}" method="POST">
         @csrf
         <div>
             <label for="name">Nome:</label>
-            <input type="text" name="name" id="name">
+            <input type="text" name="name" id="name" value="{{ $seller->name ?? old('name') }}">
         </div>
         <div>
             <label for="mail">E-mail:</label>
-            <input type="email" name="mail" id="mail">
+            <input type="email" name="mail" id="mail" value="{{ $seller->mail ?? old('mail') }}">
         </div>
         <div>
             <button type="submit">Enviar</button>

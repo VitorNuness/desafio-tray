@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SellerStoreRequest;
+use App\Http\Requests\SellerUpdateRequest;
 use App\Services\Contracts\SellerServiceInterface;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -44,9 +46,9 @@ class SellerController extends Controller
      * 
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(SellerStoreRequest $request): RedirectResponse
     {
-        $data = $request->all();
+        $data = $request->validated();
         $this->sellerService->storeSeller($data);
         return redirect()->route('sellers.index');
     }
@@ -85,11 +87,11 @@ class SellerController extends Controller
      * 
      * @return RedirectResponse
      */
-    public function update(Request $request, string $sellerId): RedirectResponse
+    public function update(SellerUpdateRequest $request, string $sellerId): RedirectResponse
     {
-        $data = $request->all();
+        $data = $request->validated();
         $this->sellerService->updateSeller($sellerId, $data);
-        return redirect()->route('sellers.index');
+        return redirect()->back();
     }
 
     /**
