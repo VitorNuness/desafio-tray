@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SellerController;
+use App\Services\Reports\SalesReportService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/sellers', SellerController::class);
 
-Route::get('/sellers/{sellerId}/sales/', [SaleController::class, 'show'])->name('sales.show');
+Route::get('/sellers/{sellerId}/sales', [SaleController::class, 'show'])->name('sales.show');
 Route::get('/sales/create', [SaleController::class, 'create'])->name('sales.create');
 Route::post('/sales/store', [SaleController::class, 'store'])->name('sales.store');
+Route::get('/a/{sellerId}', [SaleController::class, 'report']);
 
 Route::get('/', function () {
     return view('welcome');

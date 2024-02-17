@@ -10,12 +10,12 @@
     <div>
         @forelse ($sales as $sale)
             <div>
-                {{ $sale->seller->id }}
-                {{ $sale->seller->name }}
-                {{ $sale->seller->mail }}
-                {{ $sale->value * 0.085 }}
-                {{ $sale->value }}
-                {{ $sale->created_at }}
+                {{ $sale->sellerId }}
+                {{ $sale->sellerName }}
+                {{ $sale->sellerMail }}
+                {{ $sale->commission }}
+                {{ $sale->saleValue }}
+                {{ $sale->saleDate }}
             </div>
         @empty
             Nenhuma venda registrada

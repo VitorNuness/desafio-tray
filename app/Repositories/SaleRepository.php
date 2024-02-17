@@ -25,7 +25,7 @@ class SaleRepository implements SaleRepositoryInterface
      */
     public function findSalesBySeller(string $sellerId): Collection
     {
-        return $this->saleModel->with('seller')->where('seller_id', $sellerId)->get();
+        return $this->saleModel->all()->where('seller_id', $sellerId);
     }
 
     /**
