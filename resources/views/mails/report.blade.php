@@ -1,4 +1,4 @@
-{{-- <p>Relatório de vendas referente ao dia {{ $report->date }}</p> --}}
+<p>Relatório de vendas referente ao dia {{ $report->date }}</p>
 <p>Dados do vendedor:</p>
 <ul>
     <li>Código: {{$report->seller->id}}</li>
@@ -9,23 +9,26 @@
     @if ($report->sales)
         <table>
             <thead>
-                <td>ID</td>
-                <td>Valor</td>
-                <td>Comissão</td>
+                <tr>
+                    <td>Valor</td>
+                    <td>Comissão</td>
+                </tr>
             </thead>
 
             <tbody>
                 @foreach ($report->sales as $sale)
-                    <td>$sale->id</td>
-                    <td>$sale->value</td>
-                    <td>$sale->comission</td>
+                    <tr>
+                        <td>{{ $sale->value }}</td>
+                        <td>{{ $sale->comission}}</td>
+                    </tr>
                 @endforeach
             </tbody>
 
             <tfoot>
-                <td>Total</td>
-                <td>$report->totalValue</td>
-                <td>$report->totalComission</td>
+                <tr>
+                    <td>{{ $report->salesTotal }}</td>
+                    <td>{{ $report->commissionTotal }}</td>
+                </tr>
             </tfoot>
         </table>
     @endif

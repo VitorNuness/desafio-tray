@@ -81,7 +81,7 @@ class SaleService implements SaleServiceInterface
     public function getTotalInValues(array $values): float
     {
         $total = 0;
-        foreach ($values as $value)
+        foreach ($values as $key => $value)
         {
             $total += $value;
         }
@@ -97,6 +97,6 @@ class SaleService implements SaleServiceInterface
      */
     public function getCommission(float $saleValue): float
     {
-        return round(($this->commision / $saleValue) * 100, 2);
+        return round(($this->commision * $saleValue) / 100, 2);
     }
 }
