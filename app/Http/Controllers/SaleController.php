@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DTOs\Sales\SaleStoreDTO;
 use App\Http\Requests\SaleStoreRequest;
 use App\Models\Sale;
+use App\Repositories\Contracts\SaleRepositoryInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -12,7 +13,7 @@ use Illuminate\View\View;
 class SaleController extends Controller
 {
     public function __construct(
-        protected Sale $saleModel,
+        protected SaleRepositoryInterface $saleRepository,
     ) {
         //
     }
@@ -26,8 +27,7 @@ class SaleController extends Controller
      */
     public function show(string $sellerId): View
     {
-        // $sales = $this->saleModel->all()->where('seller_id', $sellerId);
-        $sales = $this->saleModel->with('seller')->where('seller_id', $sellerId)->get();
+        $sales = $this->saleRepository->findSalesBySeller($sellerId);
         return view('sales.sales', compact('sales'));
     }
 
@@ -51,12 +51,7 @@ class SaleController extends Controller
     public function store(SaleStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        $this->saleModel->create(
-            [
-                'seller_id' => $data['seller'],
-                'value' => $data['value'],
-            ],
-        );
+        $this->saleRepository->storeSaleToSeller($data);
         return redirect()->back();
     }
 }
