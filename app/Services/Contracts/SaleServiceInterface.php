@@ -17,6 +17,16 @@ interface SaleServiceInterface
     public function findSalesBySeller(string $sellerId): Collection;
 
     /**
+     * Get all sale by seller and date sale date.
+     * 
+     * @param  string $sellerId
+     * @param  string $date
+     * 
+     * @return Collection
+     */
+    public function findSalesBySellerAndDate(string $sellerId, string $date): Collection;
+
+    /**
      * Store a new sale to seller.
      * 
      * @param  array $saleData

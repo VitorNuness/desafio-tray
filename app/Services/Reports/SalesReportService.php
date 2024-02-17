@@ -27,7 +27,8 @@ class SalesReportService implements SalesReportServiceInterface
      */
     public function generate(string $sellerId): stdClass
     {
-        $salesData = $this->saleService->findSalesBySeller($sellerId);
+        $date = date('Y-m-d');
+        $salesData = $this->saleService->findSalesBySellerAndDate($sellerId, $date);
         $sales = [];
         $salesValues = [];
         $salesCommissions = [];
