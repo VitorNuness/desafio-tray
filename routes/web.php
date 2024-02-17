@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/sellers', SellerController::class);
-Route::resource('/sales', SaleController::class);
+
+Route::get('/sellers/{sellerId}/sales/', [SaleController::class, 'show'])->name('sales.show');
+Route::get('/sales/create', [SaleController::class, 'create'])->name('sales.create');
+Route::post('/sales/store', [SaleController::class, 'store'])->name('sales.store');
 
 Route::get('/', function () {
     return view('welcome');

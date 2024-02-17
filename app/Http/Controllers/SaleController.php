@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\DTOs\Sales\SaleStoreDTO;
 use App\Http\Requests\SaleStoreRequest;
-use App\Models\Sale;
-use App\Repositories\Contracts\SaleRepositoryInterface;
+use App\Services\Contracts\SaleServiceInterface;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class SaleController extends Controller
 {
     public function __construct(
-        protected SaleRepositoryInterface $saleRepository,
+        protected SaleServiceInterface $saleService,
     ) {
         //
     }
@@ -27,7 +24,7 @@ class SaleController extends Controller
      */
     public function show(string $sellerId): View
     {
-        $sales = $this->saleRepository->findSalesBySeller($sellerId);
+        $sales = $this->saleService->findSalesBySeller($sellerId);
         return view('sales.sales', compact('sales'));
     }
 
@@ -51,7 +48,7 @@ class SaleController extends Controller
     public function store(SaleStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        $this->saleRepository->storeSaleToSeller($data);
+        $this->saleService->storeSaleToSeller($data);
         return redirect()->back();
     }
 }
