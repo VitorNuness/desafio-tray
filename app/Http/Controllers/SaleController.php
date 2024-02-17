@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DTOs\Sales\SaleStoreDTO;
+use App\Http\Requests\SaleStoreRequest;
 use App\Models\Sale;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -43,16 +44,17 @@ class SaleController extends Controller
     /**
      * Store a newly created sale in storage.
      * 
-     * @param  Request $request
+     * @param  SaleStoreRequest $request
      * 
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(SaleStoreRequest $request): RedirectResponse
     {
+        $data = $request->validated();
         $this->saleModel->create(
             [
-                'seller_id' => $request->seller,
-                'value' => $request->value,
+                'seller_id' => $data['seller'],
+                'value' => $data['value'],
             ],
         );
         return redirect()->back();

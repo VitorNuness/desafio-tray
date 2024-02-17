@@ -42,7 +42,7 @@ class SellerController extends Controller
     /**
      * Store a newly created seller in storage.
      * 
-     * @param  Request $request
+     * @param  SellerStoreRequest $request
      * 
      * @return RedirectResponse
      */
@@ -82,7 +82,7 @@ class SellerController extends Controller
     /**
      * Update the specified seller in storage.
      * 
-     * @param  Request $request
+     * @param  SellerUpdateRequest $request
      * @param  string $sellerId
      * 
      * @return RedirectResponse
