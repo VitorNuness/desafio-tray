@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SellerController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/sellers', SellerController::class);
+Route::resource('/sales', SaleController::class);
 
 Route::get('/', function () {
     return view('welcome');

@@ -11,7 +11,7 @@
         <a href="{{ route('sellers.index') }}">Vendedores</a>
     </div>
     <div>
-        <a href="#">Nova Venda</a>
+        <a href="{{ route('sales.create') }}">Nova Venda</a>
     </div>
 </body>
 </html>
