@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Services\Reports\SalesReportMailSenderService;
 use Illuminate\Console\Command;
 
 class ReportMail extends Command
@@ -18,13 +19,13 @@ class ReportMail extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Send report mails at 11PM daily';
 
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(SalesReportMailSenderService $sendMail)
     {
-        //
+        $sendMail->sendMail();
     }
 }
