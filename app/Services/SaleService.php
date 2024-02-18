@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Sale;
 use App\Repositories\Contracts\SaleRepositoryInterface;
 use App\Services\Contracts\SaleServiceInterface;
 use Carbon\Carbon;
@@ -49,11 +50,11 @@ class SaleService implements SaleServiceInterface
      * 
      * @param  array $saleData
      * 
-     * @return void
+     * @return Sale
      */
-    public function storeSaleToSeller(array $saleData): void
+    public function storeSaleToSeller(array $saleData): Sale
     {
-        $this->saleRepository->storeSaleToSeller($saleData);
+        return $this->saleRepository->storeSaleToSeller($saleData);
     }
 
     /**

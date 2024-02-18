@@ -48,11 +48,11 @@ class SaleRepository implements SaleRepositoryInterface
      * 
      * @param  array $saleData
      * 
-     * @return void
+     * @return Sale
      */
-    public function storeSaleToSeller(array $saleData): void
+    public function storeSaleToSeller(array $saleData): Sale
     {
-        $this->saleModel->create(
+        return $this->saleModel->create(
             [
                 'seller_id' => $saleData['seller'],
                 'value' => $saleData['value'],

@@ -2,6 +2,7 @@
 
 namespace App\Services\Contracts;
 
+use App\Models\Sale;
 use Illuminate\Database\Eloquent\Collection;
 use stdClass;
 
@@ -31,9 +32,9 @@ interface SaleServiceInterface
      * 
      * @param  array $saleData
      * 
-     * @return void
+     * @return Sale
      */
-    public function storeSaleToSeller(array $saleData): void;
+    public function storeSaleToSeller(array $saleData): Sale;
 
     /**
      * Get the total of sales.

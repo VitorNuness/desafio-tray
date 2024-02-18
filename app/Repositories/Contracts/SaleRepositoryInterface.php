@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Contracts;
 
+use App\Models\Sale;
 use Illuminate\Database\Eloquent\Collection;
 
 interface SaleRepositoryInterface
@@ -30,9 +31,9 @@ interface SaleRepositoryInterface
      * 
      * @param  array $saleData
      * 
-     * @return void
+     * @return Sale
      */
-    public function storeSaleToSeller(array $saleData): void;
+    public function storeSaleToSeller(array $saleData): Sale;
 
     /**
      * Get sellerts with have sales on daly.
