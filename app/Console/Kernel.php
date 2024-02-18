@@ -7,19 +7,12 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    public function __construct(
-        private string $time = '23:00',
-    )
-    {
-        //
-    }
-
     /**
      * Define the application's command schedule.
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('app:report-mail')->dailyAt($this->time);
+        $schedule->command('app:report-mail')->dailyAt('23:00');
     }
 
     /**
