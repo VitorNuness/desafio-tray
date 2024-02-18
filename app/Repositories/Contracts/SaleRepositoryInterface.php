@@ -33,4 +33,11 @@ interface SaleRepositoryInterface
      * @return void
      */
     public function storeSaleToSeller(array $saleData): void;
+
+    /**
+     * Get sellerts with have sales on daly.
+     * 
+     * @return Collection
+     */
+    public function getSellersWithSales(): Collection;
 }

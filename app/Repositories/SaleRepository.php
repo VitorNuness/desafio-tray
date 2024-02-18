@@ -59,4 +59,19 @@ class SaleRepository implements SaleRepositoryInterface
             ],
         );
     }
+
+    /**
+     * Get sellerts with have sales on daly.
+     * 
+     * @return Collection
+     */
+    public function getSellersWithSales(): Collection
+    {
+        $date = date('Y-m-d');
+        return $this->saleModel->select('seller_id')
+                               ->with('seller')
+                               ->whereDate('created_at', $date)
+                               ->groupBy('seller_id')
+                               ->get();
+    }
 }
