@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Services\Reports\SalesReportMailSenderService;
+use App\Services\Reports\Contracts\SalesReportMailSenderServiceInterface;
 use Illuminate\Console\Command;
 
 class ReportMail extends Command
@@ -24,7 +24,7 @@ class ReportMail extends Command
     /**
      * Execute the console command.
      */
-    public function handle(SalesReportMailSenderService $sendMail)
+    public function handle(SalesReportMailSenderServiceInterface $sendMail)
     {
         $sendMail->sendMail();
     }

@@ -5,7 +5,9 @@ namespace App\Providers;
 use App\Services\SaleService;
 use App\Services\Contracts\SaleServiceInterface;
 use App\Services\Contracts\SellerServiceInterface;
+use App\Services\Reports\Contracts\SalesReportMailSenderServiceInterface;
 use App\Services\Reports\Contracts\SalesReportServiceInterface;
+use App\Services\Reports\SalesReportMailSenderService;
 use App\Services\Reports\SalesReportService;
 use App\Services\SellerService;
 use Illuminate\Support\ServiceProvider;
@@ -30,6 +32,11 @@ class ServiceServiceProvider extends ServiceProvider
         $this->app->bind(
             SalesReportServiceInterface::class,
             SalesReportService::class,
+        );
+
+        $this->app->bind(
+            SalesReportMailSenderServiceInterface::class,
+            SalesReportMailSenderService::class,
         );
     }
 

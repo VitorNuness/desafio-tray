@@ -4,11 +4,11 @@ namespace App\Services\Reports;
 
 use App\Mail\ReportMail;
 use App\Repositories\Contracts\SaleRepositoryInterface;
-use App\Services\Contracts\SellerServiceInterface;
+use App\Services\Reports\Contracts\SalesReportMailSenderServiceInterface;
 use App\Services\Reports\Contracts\SalesReportServiceInterface;
 use Illuminate\Support\Facades\Mail;
 
-class SalesReportMailSenderService
+class SalesReportMailSenderService implements SalesReportMailSenderServiceInterface
 {
     public function __construct(
         protected SaleRepositoryInterface $saleRepository,
@@ -18,6 +18,11 @@ class SalesReportMailSenderService
         //
     }
 
+    /**
+     * Send mails to sellers with sales daily.
+     * 
+     * @return void
+     */
     public function sendMail(): void
     {
         $sellers = $this->saleRepository->getSellersWithSales();
