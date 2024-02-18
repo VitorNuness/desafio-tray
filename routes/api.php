@@ -20,6 +20,4 @@ Route::resource('/sellers', SellerControler::class);
 
 
 Route::get('/sellers/{sellerId}/sales', [SaleController::class, 'show'])->name('sales.show');
-Route::get('/sales/create', [SaleController::class, 'create'])->name('sales.create');
 Route::post('/sales/store', [SaleController::class, 'store'])->name('sales.store');
-Route::get('/sales/mail/{sellerId}', [SaleController::class, 'report']);
