@@ -43,11 +43,11 @@ class SellerService implements SellerServiceInterface
      * 
      * @param  array $sellerData
      * 
-     * @return void
+     * @return Seller
      */
-    public function storeSeller(array $sellerData): void
+    public function storeSeller(array $sellerData): Seller
     {
-        $this->sellerRepository->storeSeller($sellerData);
+        return $this->sellerRepository->storeSeller($sellerData);
     }
 
     /**
@@ -56,11 +56,11 @@ class SellerService implements SellerServiceInterface
      * @param  string $sellerId
      * @param  array $sellerData
      * 
-     * @return void
+     * @return Seller
      */
-    public function updateSeller(string $sellerId, array $sellerData): void
+    public function updateSeller(string $sellerId, array $sellerData): Seller
     {
-        $this->sellerRepository->updateSeller($sellerId, $sellerData);
+        return $this->sellerRepository->updateSeller($sellerId, $sellerData);
     }
 
     /**

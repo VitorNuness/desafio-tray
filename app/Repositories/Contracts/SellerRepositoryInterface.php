@@ -28,9 +28,9 @@ interface SellerRepositoryInterface
      * 
      * @param  array $sellerData
      * 
-     * @return void
+     * @return Seller
      */
-    public function storeSeller(array $sellerData): void;
+    public function storeSeller(array $sellerData): Seller;
 
     /**
      * Update a seller data.
@@ -38,9 +38,9 @@ interface SellerRepositoryInterface
      * @param  string $sellerId
      * @param  array $sellerData
      * 
-     * @return void
+     * @return Seller
      */
-    public function updateSeller(string $sellerId, array $sellerData): void;
+    public function updateSeller(string $sellerId, array $sellerData): Seller;
 
     /**
      * Delete a seller.

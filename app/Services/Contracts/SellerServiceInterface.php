@@ -3,6 +3,7 @@
 namespace App\Services\Contracts;
 
 use App\Models\Seller;
+use App\Repositories\Contracts\SellerRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 
 interface SellerServiceInterface
@@ -28,9 +29,9 @@ interface SellerServiceInterface
      * 
      * @param  array $sellerData
      * 
-     * @return void
+     * @return Seller
      */
-    public function storeSeller(array $sellerData): void;
+    public function storeSeller(array $sellerData): Seller;
 
     /**
      * Update a seller data.
@@ -38,9 +39,9 @@ interface SellerServiceInterface
      * @param  string $sellerId
      * @param  array $sellerData
      * 
-     * @return void
+     * @return Seller
      */
-    public function updateSeller(string $sellerId, array $sellerData): void;
+    public function updateSeller(string $sellerId, array $sellerData): Seller;
 
     /**
      * Delete a seller.

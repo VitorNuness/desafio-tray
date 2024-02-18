@@ -6,5 +6,8 @@
     <div class="mx-auto">
         <h1 class="container mb-3">Adicionar Vendedor</h1>
     </div>
-    <x-seller-form />
+
+    <form action="{{ route('sellers.store') }}" method="POST" class="container w-75">
+        <x-seller-form />
+    </form>
 @endsection

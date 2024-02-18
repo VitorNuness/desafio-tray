@@ -42,11 +42,11 @@ class SellerRepository implements SellerRepositoryInterface
      * 
      * @param  array $sellerData
      * 
-     * @return void
+     * @return Seller
      */
-    public function storeSeller(array $sellerData): void
+    public function storeSeller(array $sellerData): Seller
     {
-        $this->sellerModel->create($sellerData);
+        return $this->sellerModel->create($sellerData);
     }
 
     /**
@@ -55,11 +55,13 @@ class SellerRepository implements SellerRepositoryInterface
      * @param  string $sellerId
      * @param  array $sellerData
      * 
-     * @return void
+     * @return Seller
      */
-    public function updateSeller(string $sellerId, array $sellerData): void
+    public function updateSeller(string $sellerId, array $sellerData): Seller
     {
-        $this->sellerModel->findOrFail($sellerId)->update($sellerData);
+        $seller = $this->sellerModel->findOrFail($sellerId);
+        $seller->update($sellerData);
+        return $seller;
     }
 
     /**
