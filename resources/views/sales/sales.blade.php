@@ -1,25 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vendas</title>
-</head>
-<body>
-    <div>
-        @forelse ($sales as $sale)
-            <div>
-                {{ $sale->sellerId }}
-                {{ $sale->sellerName }}
-                {{ $sale->sellerMail }}
-                {{ $sale->commission }}
-                {{ $sale->saleValue }}
-                {{ $sale->saleDate }}
-            </div>
-        @empty
-            Nenhuma venda registrada
-        @endforelse
+@extends('layouts.app')
+@section('content')
+    <div class="mb-3">
+        <a href="{{ route('sellers.show', $sellerId) }}" class="btn btn-primary">Voltar</a>
     </div>
-</body>
-</html>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Comissão</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($sales as $sale)
+                    <tr>
+                        <th>{{ $sale->sellerId }}</th>
+                        <td>{{ $sale->sellerName }}</td>
+                        <td>{{ $sale->sellerMail }}</td>
+                        <td>{{ $sale->commission }}</td>
+                        <td>{{ $sale->saleValue }}</td>
+                        <td>{{ $sale->saleDate }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">Nenhuma venda registrada</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+@endsection

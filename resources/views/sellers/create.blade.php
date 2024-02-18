@@ -1,33 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Adicionar Vendedor</title>
-</head>
-<body>
-    @if ($errors->any())
-        <div>
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
-        </div>
-    @endif
-    <form action="{{ route('sellers.store') }}" method="POST">
-        @csrf
-        <div>
-            <label for="name">Nome:</label>
-            <input type="text" name="name" id="name" value="{{ $seller->name ?? old('name') }}">
-        </div>
-        <div>
-            <label for="mail">E-mail:</label>
-            <input type="email" name="mail" id="mail" value="{{ $seller->mail ?? old('mail') }}">
-        </div>
-        <div>
-            <button type="submit">Enviar</button>
-        </div>
-    </form>
-    <a href="{{ route('sellers.index') }}">Voltar</a>
-</body>
-</html>
+@extends('layouts.app')
+@section('content')
+    <div class="mb-3">
+        <a href="{{ route('sellers.index') }}" class="btn btn-primary">Voltar</a>
+    </div>
+    <div class="mx-auto">
+        <h1 class="container mb-3">Adicionar Vendedor</h1>
+    </div>
+    <x-seller-form />
+@endsection

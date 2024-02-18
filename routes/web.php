@@ -23,5 +23,5 @@ Route::post('/sales/store', [SaleController::class, 'store'])->name('sales.store
 Route::get('/sales/mail/{sellerId}', [SaleController::class, 'report']);
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return redirect()->route('sellers.index');
+})->name('home');

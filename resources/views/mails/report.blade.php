@@ -1,33 +1,36 @@
-<p>Relatório de vendas referente ao dia {{ $report->date }}</p>
+<h2>Relatório de vendas referente ao dia {{ $report->date }}</h2>
 <p>Dados do vendedor:</p>
 <ul>
-    <li>Código: {{$report->seller->id}}</li>
-    <li>Nome: {{$report->seller->name}}</li>
-    <li>E-mail: {{$report->seller->mail}}</li>
+    <li>Código: {{ $report->seller->id }}</li>
+    <li>Nome: {{ $report->seller->name }}</li>
+    <li>E-mail: {{ $report->seller->mail }}</li>
 </ul>
+<hr>
 <p>
     @if ($report->sales)
         <table>
             <thead>
                 <tr>
-                    <td>Valor</td>
-                    <td>Comissão</td>
+                    <th></th>
+                    <th>Valor</th>
+                    <th>Comissão</th>
                 </tr>
             </thead>
 
             <tbody>
                 @foreach ($report->sales as $sale)
                     <tr>
+                        <td></td>
                         <td>{{ $sale->value }}</td>
-                        <td>{{ $sale->comission}}</td>
+                        <td>{{ $sale->comission }}</td>
                     </tr>
                 @endforeach
             </tbody>
-
             <tfoot>
                 <tr>
-                    <td>{{ $report->salesTotal }}</td>
-                    <td>{{ $report->commissionTotal }}</td>
+                    <th>Total</th>
+                    <th>{{ $report->salesTotal }}</th>
+                    <th>{{ $report->commissionTotal }}</th>
                 </tr>
             </tfoot>
         </table>

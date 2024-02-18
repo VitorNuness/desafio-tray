@@ -1,28 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vendedores</title>
-</head>
-<body>
-    <a href="{{ route('sellers.create') }}">Adicionar Vendedor</a>
-    <div>
-        @forelse ($sellers as $seller)
-            <div>
-                {{ $seller->name }} {{ $seller->main }}
-                <a href="{{ route('sellers.show', $seller->id) }}">Ver</a>
-                <a href="{{ route('sellers.edit', $seller->id) }}">Editar</a>
-                <form action="{{ route('sellers.destroy', $seller->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Deletar</button>
-                </form>
-            </div>
-        @empty
-            Nenhum vendedor cadastrado
-        @endforelse
+@extends('layouts.app')
+@section('content')
+    <div class="d-flex justify-content-between">
+        <div class="mb-3">
+            <a href="{{ route('sellers.create') }}" class="btn btn-success">Adicionar Vendedor</a>
+        </div>
+        <div>
+            <a class="btn btn-success" href="{{ route('sales.create') }}">Nova Venda</a>
+        </div>
     </div>
-</body>
-</html>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($sellers as $seller)
+                    <tr>
+                        <th>{{ $seller->id }}</th>
+                        <td>{{ $seller->name }}</td>
+                        <td>{{ $seller->mail }}</td>
+                        <td><a href="{{ route('sellers.show', $seller->id) }}" class="btn btn-primary">Ver</a></td>
+                    </tr>
+                @empty
+                    Nenhum vendedor cadastrado
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+@endsection

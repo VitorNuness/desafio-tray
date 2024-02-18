@@ -1,32 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Adicionar Venda</title>
-</head>
-<body>
+@extends('layouts.app')
+@section('content')
     @if ($errors->any())
         <div>
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
+            <x-alert />
         </div>
     @endif
-    <form action="{{ route('sales.store') }}" method="POST">
+    <form action="{{ route('sales.store') }}" method="POST" class="container w-75">
         @csrf
-        <div>
-            <label for="seller">Código Vendedor:</label>
-            <input type="number" name="seller" id="seller">
+        <div class="form-group mb-3">
+            <label for="seller" class="form-label">Código Vendedor:</label>
+            <input type="number" class="form-control" id="seller" value="{{ old('seller') }}">
         </div>
-        <div>
-            <label for="value">Valor:</label>
-            <input type="number" step="0.01" name="value" id="value">
+
+        <div class="form-group mb-3">
+            <label for="value" class="form-label">Valor da venda:</label>
+            <input type="number" step="0.01" class="form-control" name="value" id="value"
+                value="{{ old('value') }}">
         </div>
-        <div>
-            <button type="submit">Adicionar</button>
+        <div class="mb-3">
+            <button type="submit" class="w-100 btn btn-success">Adicionar</button>
         </div>
     </form>
-</body>
-</html>
+@endsection

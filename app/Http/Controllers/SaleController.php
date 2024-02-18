@@ -27,7 +27,7 @@ class SaleController extends Controller
     public function show(string $sellerId): View
     {
         $sales = $this->saleService->listWithComissionAndSeller($sellerId);
-        return view('sales.sales', compact('sales'));
+        return view('sales.sales', compact('sales', 'sellerId'));
     }
 
     /**
