@@ -27,7 +27,9 @@
                         <td><a href="{{ route('sellers.show', $seller->id) }}" class="btn btn-primary">Ver</a></td>
                     </tr>
                 @empty
-                    Nenhum vendedor cadastrado
+                    <tr>
+                        <td colspan="4">Nenhum vendedor cadastrado</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
