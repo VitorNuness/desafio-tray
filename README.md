@@ -116,13 +116,153 @@ php artisan schedule:work
 A API fornece os seguintes endpoints:
 
 - `GET /api/sellers`: Retorna todos os vendedores.
-- `POST /api/sellers`: Cria um novo vendedor.
-- `GET /api/sellers/{id}`: Retorna um vendedor específico.
-- `PUT /api/sellers/{id}`: Atualiza um vendedor específico.
-- `DELETE /api/sellers/{id}`: Deleta um vendedor específico.
-- `GET /api/sellers/{id}/sales`: Retorna todas as vendas do vendedor.
-- `POST /api/sales`: Cria uma nova venda.
 
+    Response:
+    ```json
+    {
+    "data": [
+        {
+        "id": 1,
+        "name": "Vitor Nunes",
+        "mail": "vitor1nuness@gmail.com",
+        "created_at": "2024-02-18",
+        "updated_at": "2024-02-18"
+        }
+    ]
+    }
+    ```
+
+- `POST /api/sellers`: Cria um novo vendedor e o retorna.
+
+    Request:
+    ```json
+    {
+        "name": "Vitor Nunes",
+        "mail": "vitor1nuness@gmail.com"
+    }
+    ```
+
+    Response:
+    ```json
+    {
+    "data": [
+        {
+        "id": 1,
+        "name": "Vitor Nunes",
+        "mail": "vitor1nuness@gmail.com",
+        "created_at": "2024-02-18",
+        "updated_at": "2024-02-18"
+        }
+    ]
+    }
+    ```
+
+- `GET /api/sellers/{id}`: Retorna um vendedor específico.
+
+    Reponse:
+    ```json
+    {
+    "data": [
+        {
+        "id": 1,
+        "name": "Vitor Nunes",
+        "mail": "vitor1nuness@gmail.com",
+        "created_at": "2024-02-18",
+        "updated_at": "2024-02-18"
+        }
+    ]
+    }
+    ```
+
+- `PUT /api/sellers/{id}`: Atualiza um vendedor específico e o retorna.
+
+    Request:
+    ```json
+    {
+        "name": "Vitor Nunes",
+        "mail": "vitor1nuness@gmail.com"
+    }
+    ```
+
+    Response:
+    ```json
+    {
+    "data": [
+        {
+        "id": 1,
+        "name": "Vitor",
+        "mail": "vitor1nuness@gmail.com",
+        "created_at": "2024-02-18",
+        "updated_at": "2024-02-18"
+        }
+    ]
+    }
+    ```
+
+- `DELETE /api/sellers/{id}`: Deleta um vendedor específico e retorna um json vazio.
+
+    Reponse:
+    ```json
+    {}
+    ```
+
+- `GET /api/sellers/{id}/sales`: Retorna todas as vendas do vendedor.
+
+    Reponse:
+    ```json
+    {
+    "0": {
+        "sellerId": 1,
+        "sellerName": "Vitor Nunes",
+        "sellerMail": "vitor1nuness@gmail.com",
+        "commission": "8.500,00",
+        "saleValue": "100.000,00",
+        "saleDate": "18/02/2024"
+    },
+    "1": {
+        "sellerId": 1,
+        "sellerName": "Vitor Nunes",
+        "sellerMail": "vitor1nuness@gmail.com",
+        "commission": "5.950,00",
+        "saleValue": "70.000,00",
+        "saleDate": "18/02/2024"
+    }
+    }
+    ```
+
+- `POST /api/sales`: Cria uma nova venda e a retorna.
+
+    Request:
+    ```json
+    {
+        "seller": "1",
+        "value": "100000.00"
+    }
+    ```
+
+    Response:
+    ```json
+    {
+    "data": {
+        "seller": {
+        "id": 1,
+        "name": "Vitor Nunes",
+        "mail": "vitor1nuness@gmail.com",
+        "created_at": "2024-02-18",
+        "updated_at": "2024-02-18"
+        },
+        "value": "100000",
+        "created_at": "2024-02-18",
+        "updated_at": "2024-02-18"
+    }
+    }
+    ```
+
+### E-mail:
+
+No final do dia um e-mail é disparado para cada vendedor com o relatório de vendas do dia.
+
+![email](ReadMeImages/email.png)
 
 ## Licença
 
