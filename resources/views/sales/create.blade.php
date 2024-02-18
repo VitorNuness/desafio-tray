@@ -9,7 +9,7 @@
         @csrf
         <div class="form-group mb-3">
             <label for="seller" class="form-label">Código Vendedor:</label>
-            <input type="number" class="form-control" id="seller" value="{{ old('seller') }}">
+            <input type="number" class="form-control" name="seller" id="seller" value="{{ old('seller') }}">
         </div>
 
         <div class="form-group mb-3">
