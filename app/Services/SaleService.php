@@ -15,8 +15,7 @@ class SaleService implements SaleServiceInterface
     public function __construct(
         protected SaleRepositoryInterface $saleRepository,
         protected float $commision = 8.5,
-    )
-    {
+    ) {
         //
     }
 
@@ -69,8 +68,7 @@ class SaleService implements SaleServiceInterface
         $sales = $this->findSalesBySeller($sellerId);
         $newSalesData = [];
 
-        foreach ($sales as $sale)
-        {
+        foreach ($sales as $sale) {
             $comission = $this->getCommission($sale->value);
             $data = [
                 'sellerId' => $sale->seller->id,
@@ -95,8 +93,7 @@ class SaleService implements SaleServiceInterface
     public function getTotalInValues(array $values): float
     {
         $total = 0;
-        foreach ($values as $key => $value)
-        {
+        foreach ($values as $key => $value) {
             $total += $value;
         }
         return round($total, 2);

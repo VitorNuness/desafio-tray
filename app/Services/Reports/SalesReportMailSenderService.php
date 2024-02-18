@@ -13,8 +13,7 @@ class SalesReportMailSenderService implements SalesReportMailSenderServiceInterf
     public function __construct(
         protected SaleRepositoryInterface $saleRepository,
         protected SalesReportServiceInterface $salesReport,
-    )
-    {
+    ) {
         //
     }
 
@@ -26,8 +25,7 @@ class SalesReportMailSenderService implements SalesReportMailSenderServiceInterf
     public function sendMail(): void
     {
         $sellers = $this->saleRepository->getSellersWithSales();
-        foreach ($sellers as $seller)
-        {
+        foreach ($sellers as $seller) {
             $report = $this->salesReport->generate($seller->seller->id);
             $mail = $seller->seller->mail;
             Mail::to($mail)->send(new ReportMail($report));
